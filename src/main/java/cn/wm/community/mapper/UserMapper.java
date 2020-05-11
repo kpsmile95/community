@@ -14,4 +14,7 @@ public interface UserMapper {
 
     @Insert("insert into user(accountid,name,token,avatarUrl) values(#{accountId},#{name},#{token},#{avatarUrl})")
     int insertUser(User user);
+
+    @Select("select * from user where id=#{id}")
+    User selectById(@Param("id")Long id);
 }

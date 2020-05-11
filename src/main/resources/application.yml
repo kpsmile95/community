@@ -8,3 +8,6 @@ spring:
     username: root
     password: root
     type: com.alibaba.druid.pool.DruidDataSource
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true

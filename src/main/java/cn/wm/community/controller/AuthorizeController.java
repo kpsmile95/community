@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -46,16 +45,16 @@ public class AuthorizeController {
             user.setToken(token);
             user.setName(githubUser.getName());
             user.setAccountId(String.valueOf(githubUser.getId()));
-            user.setAvatarUrl(githubUser.getAvatarUrl());
+            user.setAvatarUrl(githubUser.getAvatar_url());
             userService.createOrUpdate(user);
             Cookie cookie = new Cookie("token", token);
             cookie.setMaxAge(60 * 60 * 24 * 30 * 6);
             response.addCookie(cookie);
-            return "redirect:/index";
+            return "redirect:/";
         } else {
             log.error("callback get github error,{}", githubUser);
             // 登录失败，重新登录
-            return "redirect:/index";
+            return "redirect:/";
         }
     }
 }
